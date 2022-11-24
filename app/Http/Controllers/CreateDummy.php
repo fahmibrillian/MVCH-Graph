@@ -20,4 +20,9 @@ class CreateDummy extends Controller
             $user->save();
         }
     }
+
+    public function get(){
+        $users = User::all();
+        return $users;
+    }
 }
