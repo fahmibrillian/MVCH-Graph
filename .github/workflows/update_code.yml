@@ -1,7 +1,9 @@
 name: CI-CD
+on:
+  push: 
+    branches: [main]
 jobs: 
   build: 
     runs-on: self-hosted
     steps: 
-      — run: | 
-          cd /var/www/MVCH-Graph && pwd
+    - run: cd /var/www/MVCH-Graph && pwd
