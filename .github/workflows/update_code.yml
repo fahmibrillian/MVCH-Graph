@@ -6,4 +6,6 @@ jobs:
   build: 
     runs-on: self-hosted
     steps: 
-    - run: cd /var/www/MVCH-Graph && pwd
+    - run: cd /var/www/MVCH-Graph
+    - run: git pull origin main
+    - run: composer install
