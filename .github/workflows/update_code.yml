@@ -1,0 +1,12 @@
+name: CI-CD
+on:
+  push: 
+    branches: [main]
+jobs: 
+  build: 
+    runs-on: self-hosted
+    steps: 
+    - run: |
+        cd /var/www/MVCH-Graph
+        git pull origin main
+        composer install
