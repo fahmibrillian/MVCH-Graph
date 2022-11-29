@@ -22,6 +22,8 @@
       <link href="{{asset('assets')}}/fullcalendar/daygrid/main.css" rel='stylesheet' />
       <link href="{{asset('assets')}}/fullcalendar/timegrid/main.css" rel='stylesheet' />
       <link href="{{asset('assets')}}/fullcalendar/list/main.css" rel='stylesheet' />
+      <!-- Logo -->
+      <link href="{{asset('assets')}}/images/logo.png" rel="shortcut icon" />
 
       <link rel="stylesheet" href="{{asset('assets')}}/css/flatpickr.min.css">
 
