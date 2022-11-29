@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class DashboardController extends Controller
 {
-    // SHOW LIST PHYSICIANS
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('pages.doctor.index');
+        //
     }
 
-    // SHOW CREATE NEW PHYSICIAN PAGE
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('pages.doctor.form');
+        //
     }
 
     /**

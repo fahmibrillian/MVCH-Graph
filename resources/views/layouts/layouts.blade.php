@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from templates.iqonic.design/xray/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Nov 2022 01:19:13 GMT -->
-<head>
+   <!-- Mirrored from templates.iqonic.design/xray/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Nov 2022 01:19:13 GMT -->
+   <head>
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,7 @@
       <link rel="stylesheet" href="{{asset('assets')}}/css/style.css">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{{asset('assets')}}/css/responsive.css">
-       <!-- Full calendar -->
+      <!-- Full calendar -->
       <link href="{{asset('assets')}}/fullcalendar/core/main.css" rel='stylesheet' />
       <link href="{{asset('assets')}}/fullcalendar/daygrid/main.css" rel='stylesheet' />
       <link href="{{asset('assets')}}/fullcalendar/timegrid/main.css" rel='stylesheet' />
@@ -42,34 +42,34 @@
          <div class="iq-sidebar">
             <div class="iq-sidebar-logo d-flex justify-content-between">
                <a href="{{url('home')}}">
-               <img src="{{asset('assets')}}/images/logo.png" class="img-fluid" alt="">
-               <span>MVCH</span>
+                  <img src="{{asset('assets')}}/images/logo.png" class="img-fluid" alt="">
+                  <span>MVCH</span>
                </a>
                <div class="iq-menu-bt-sidebar">
-                     <div class="iq-menu-bt align-self-center">
-                        <div class="wrapper-menu">
-                           <div class="main-circle"><i class="ri-more-fill"></i></div>
-                           <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
-                        </div>
+                  <div class="iq-menu-bt align-self-center">
+                     <div class="wrapper-menu">
+                        <div class="main-circle"><i class="ri-more-fill"></i></div>
+                        <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
                      </div>
                   </div>
+               </div>
             </div>
             @include('layouts.sidebar')
          </div>
 
          <!-- Page Content  -->
-        <div id="content-page" class="content-page">
+         <div id="content-page" class="content-page">
 
-        @include('layouts.topbar')
-
-
-        @yield('content')
-        <!-- Footer -->
-
-        @include('layouts.footer')
+         @include('layouts.topbar')
 
 
-        </div>
+         @yield('content')
+         <!-- Footer -->
+
+         @include('layouts.footer')
+
+
+      </div>
 
    </body>
 </html>

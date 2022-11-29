@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class PatientController extends Controller
 {
-    // SHOW LIST PHYSICIANS
+    // SHOW LIST PATIENTS
     public function index()
     {
-        return view('pages.doctor.index');
+        return view('pages.patient.index');
     }
 
-    // SHOW CREATE NEW PHYSICIAN PAGE
+    // SHOW REGISTER NEW PATIENT PAGE
     public function create()
     {
-        return view('pages.doctor.form');
+        return view('pages.patient.form');
     }
 
     /**

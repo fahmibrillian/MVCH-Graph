@@ -18,23 +18,36 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/create-dummy', 'CreateDummy@generate');
-Route::get('/get-dummy', 'CreateDummy@get');
+Route::get('/create-dummy', 'CreateDummy@generate');//->middleware('auth');
+Route::get('/get-dummy', 'CreateDummy@get');//->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('doctor', DoctorController::class);
+// Management Data Physicians
+Route::resource('doctor', DoctorController::class);//->middleware('auth');
+
+// Management Data Employees
+Route::resource('employee', EmployeeController::class);//->middleware('auth');
+
+// Management Data Patients and Diagnoses
+Route::resource('patient', PatientController::class);//->middleware('auth);
+
+// Management Data Visitations
+Route::resource('visit', VisitController::class);//->middleware('auth');
+
+// Management Data Work Units and Care Centers
+Route::resource('workunit', WorkUnitController::class);//->middleware('auth');
 
 Route::get('doctor-dashboard',function(){
-    return view('pages.doctor-dashboard.index');
+    return view('pages.doctor-dashboard.index');//->middleware('auth');
 });
 
 Route::get('hospital-dashboard',function(){
-    return view('pages.hospital-dashboard.index');
+    return view('pages.hospital-dashboard.index');//->middleware('auth');
 });
 
 Route::get('patient-dashboard',function(){
-    return view('pages.patient-dashboard.index');
+    return view('pages.patient-dashboard.index');//->middleware('auth');
 });
 
 Auth::routes();
