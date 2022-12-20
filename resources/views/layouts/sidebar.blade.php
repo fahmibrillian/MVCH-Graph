@@ -36,8 +36,8 @@
             <a href="#patient-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-user-3-fill"></i><span>Patients</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="patient-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('patient')}}"><i class="ri-group-fill"></i>List Patients</a></li>
-               <li><a href="{{url('patient/diagnose')}}"><i class="ri-file-list-3-fill"></i>Diagnose</a></li>
-               <li><a href="{{url('patient/obtain')}}"><i class="ri-file-list-3-fill"></i>Obtain Records Patient</a></li>
+               <li><a href="{{url('diagnose')}}"><i class="ri-file-list-3-fill"></i>Diagnose</a></li>
+               <li><a href="{{url('obtain')}}"><i class="ri-file-list-3-fill"></i>Obtain Records Patient</a></li>
                <li><a href="{{url('patient/create')}}"><i class="ri-user-add-fill"></i>Register New Patient</a></li>
             </ul>
          </li>
