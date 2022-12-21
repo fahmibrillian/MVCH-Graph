@@ -9,7 +9,7 @@ class EmployeeController extends Controller
     // SHOW LIST EMPLOYEES
     public function index()
     {
-        $data['employee'] = \App\Employee::with('staff','nurse','technician')->get();
+        $data['employee'] = \App\Employee::with('staff.workUnit','nurse.careCenter.workUnit','technician.workUnit','person')->get();
         return view('pages.employee.index', $data);
     }
 
