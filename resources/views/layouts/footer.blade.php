@@ -63,4 +63,6 @@
 
  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
+ <script src="https://unpkg.com/neovis.js@2.0.2"></script>
+
  @stack('scripts')

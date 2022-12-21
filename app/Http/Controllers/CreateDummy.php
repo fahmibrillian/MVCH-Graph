@@ -15,18 +15,18 @@ use App\CareCenter;
 use Illuminate\Http\Request;
 
 class CreateDummy extends Controller
-{
-    public function generate(){
+public function generate(){
+        {
         $faker = Factory::create();
-        foreach(range(1,20) as $index){
+        foreach(range(1,5) as $index){
             $workunit = new WorkUnit;
-            $workunit->WorkUnitName = $faker->randomElement($array = array ('ICU','ER','OR','Medicine','Surgery','Pediatrics','OB/GYN'));
+            $workunit->WorkUnitName = $faker->randomElement($array = array ('Maternity Work Unit','Pediatric Work Unit','Surgical Work Unit','Medical Work Unit','Emergency Work Unit','Intensive Care Work Unit','Outpatient Work Unit','Other Work Unit'));
             $workunit->LocationFacility = $faker->randomElement($array = array ('Hospital','Clinic','Nursing Home','Assisted Living','Home Health','School','Other'));
             $workunit->LocationFloor = $faker->randomElement($array = array ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'));
             $workunit->save();
         }
 
-        foreach(range(1,50) as $index){
+        foreach(range(1,20) as $index){
             $carecenter = new CareCenter;
             $carecenter->CareCenterID = $faker->randomNumber($nbDigits = 5);
             $carecenter->CareCenterName = $faker->randomElement($array = array ('ICU','ER','OR','Medicine','Surgery','Pediatrics','OB/GYN'));
