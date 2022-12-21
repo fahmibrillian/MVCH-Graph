@@ -13,7 +13,7 @@ class Technician extends NeoEloquent {
 
     public function employee()
     {
-        return $this->hasOne('App\Employee','WORKS_AS');
+        return $this->belongsTo('App\Employee','WORKS_AS');
     }
 
     public function workUnit()

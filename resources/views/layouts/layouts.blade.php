@@ -34,6 +34,17 @@
       <link href="{{ asset('assets/css/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
 
       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+      <style>
+        .form-control {
+            height: 45px;
+            line-height: 45px;
+            background: transparent;
+            border: 1px solid #d7dbda;
+            font-size: 14px;
+            color: #000000 !important;
+            border-radius: 10px;
+        }
+      </style>
       @stack('css')
 
    </head>

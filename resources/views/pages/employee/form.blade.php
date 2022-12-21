@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-10">
-                                            <label for="ssn">Personal Information</label>
+                                            <label for="ssn" class="font-weight-bold">Personal Information</label>
                                         </div>
                                         <div class="col-md-10">
                                             <label for="ssn">SSN:</label>
@@ -32,17 +32,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="fname">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="First Name" disabled>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="First Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="bod">Birth of Date:</label>
-                                        <input type="date" class="form-control" name="bod" id="bod" disabled>
+                                        <input type="date" class="form-control" name="bod" id="bod">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="">Hire Information</label>
+                                            <label for="" class="font-weight-bold">Hire Information</label>
                                         </div>
                                         <div class="form-group">
                                             <label for="position">Position:</label>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="address">Address:</label>
+                                        <label for="address" class="font-weight-bold">Address:</label>
                                     </div>
                                     <div class="form-group">
                                         <label for="country">Region:</label>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="address">Login Information:</label>
+                                    <label for="address" class="font-weight-bold">Login Information:</label>
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Username:</label>

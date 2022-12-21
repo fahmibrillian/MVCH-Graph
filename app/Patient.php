@@ -13,6 +13,10 @@ class Patient extends NeoEloquent {
 
     public function person()
     {
-        return $this->hasOne('App\Person','PATIENT');
+        return $this->belongsTo('App\Person','PATIENT');
+    }
+
+    public function visit(){
+        return $this->hasMany('App\Visit','VISIT');
     }
 }

@@ -13,11 +13,16 @@ class Nurse extends NeoEloquent {
 
     public function employee()
     {
-        return $this->hasOne('App\Employee','WORKS_AS');
+        return $this->belogsTo('App\Employee','WORKS_AS');
     }
 
     public function careCenter()
     {
         return $this->hasMany('App\CareCenter','WORKS_AT');
+    }
+
+    public function obtainRecord()
+    {
+        return $this->hasMany('App\ObtainRecord','OBTAINING');
     }
 }

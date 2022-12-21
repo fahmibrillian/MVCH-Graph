@@ -33,9 +33,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($visits as $visit)
+                            @foreach ($visits as $index=>$visit)
                             <tr>
-                                <td>#</td>
+                                <td>{{$index+1}}</td>
                                 <td>
                                     {{$visit->patient->person->Name}}
                                 </td>

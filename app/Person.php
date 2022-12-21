@@ -14,6 +14,16 @@ class Person extends NeoEloquent {
 
     public function employee()
     {
-        return $this->belongsTo('App\Employee','EMPLOYED');
+        return $this->hasOne('App\Employee','EMPLOYED');
+    }
+
+    public function physician()
+    {
+        return $this->hasOne('App\Physician','EMPLOYED');
+    }
+
+    public function patient()
+    {
+        return $this->hasOne('App\Patient','PATIENT');
     }
 }

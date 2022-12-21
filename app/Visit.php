@@ -12,16 +12,26 @@ class Visit extends NeoEloquent {
 
     public function patient()
     {
-        return $this->hasOne('App\Patient','VISIT');
+        return $this->belongsTo('App\Patient','VISIT');
     }
 
     public function physician()
     {
-        return $this->hasOne('App\Physician','VISIT');
+        return $this->belongsTo('App\Physician','HANDLES');
     }
 
     public function careCenter()
     {
-        return $this->hasOne('App\CareCenter','VISIT');
+        return $this->hasOne('App\CareCenter','VISITED');
+    }
+
+    public function obtainRecord()
+    {
+        return $this->hasOne('App\ObtainRecord','OBTAIN');
+    }
+
+    public function diagnose()
+    {
+        return $this->hasMany('App\Diagnose','DIAGNOSE');
     }
 }

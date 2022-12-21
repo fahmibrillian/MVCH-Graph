@@ -15,21 +15,21 @@ class Employee extends NeoEloquent {
 
     public function person()
     {
-        return $this->hasOne('App\Person','EMPLOYED');
+        return $this->belongsTo('App\Person','EMPLOYED');
     }
 
     public function nurse()
     {
-        return $this->belongsTo('App\Nurse','WORKS_AS');
+        return $this->hasOne('App\Nurse','WORKS_AS');
     }
 
     public function staff()
     {
-        return $this->belongsTo('App\Staff','WORKS_AS');
+        return $this->hasOne('App\Staff','WORKS_AS');
     }
 
     public function technician()
     {
-        return $this->belongsTo('App\Technician','WORKS_AS');
+        return $this->hasOne('App\Technician','WORKS_AS');
     }
 }
