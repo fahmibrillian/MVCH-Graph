@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class VisitController extends Controller
 {
-    // SHOW LIST VISITATION
     public function index()
     {
-        return view('pages.visitation.index');
+        $data['visits'] = \App\Visit::with('patient')->get();
+        return view('pages.visitation.index',$data);
     }
 
     /**

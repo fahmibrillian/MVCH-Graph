@@ -16,15 +16,16 @@
                 <div class="iq-card-body">
                     <div class="table-responsive">
                     <span class="table-add float-right mb-3 mr-2">
-                        <button class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#visitationModal">
-                            <i class="ri-add-fill"><span class="pl-1">
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#visitationModal">
+                            <i class="ri-add-fill"></i><span class="pl-1">
                                 Add New Visitation
-                            </span></i>
+                            </span>
                         </button>
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>Care Center</th>
                                 <th>Visit Date</th>
@@ -32,81 +33,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($visits as $visit)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>#</td>
+                                <td>
+                                    {{$visit->patient->person->Name}}
+                                </td>
+                                <td>
+                                    {{$visit->careCenter->CareCenterName}}
+                                </td>
+                                <td>
+                                    {{$visit->VisitDate}}
+                                </td>
+                                <td>
+                                    <a href="{{route('visit.show', $visit->id)}}" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="{{route('visit.edit', $visit->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{route('visit.destroy', $visit->id)}}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>2009/01/12</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>2012/03/29</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>2008/11/28</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>2012/12/02</td>
-                                <td>$372,000</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>2009/01/12</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>2012/03/29</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>2008/11/28</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>2012/12/02</td>
-                                <td>$372,000</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>Care Center</th>
                                 <th>Visit Date</th>
@@ -187,7 +140,7 @@
 						<input type="time" name="visit_time" id="visit_time" class="form-control" required>
 						<div class="invalid-feedback">Visit time invalid</div>
 					</div>
-            
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -201,7 +154,7 @@
 
 @endsection
 
-
+@push('scripts')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
 <!-- SCRIPT VALIDASI FORM -->
@@ -224,3 +177,13 @@
         }, false);
     })();
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    } );
+</script>
+
+@endpush
+
+

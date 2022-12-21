@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
-    // SHOW LIST PHYSICIANS
     public function index()
     {
-        return view('pages.doctor.index');
+        $data['physicians'] = \App\Physician::with('person')->get();
+        return view('pages.doctor.index', $data);
     }
 
     // SHOW CREATE NEW PHYSICIAN PAGE

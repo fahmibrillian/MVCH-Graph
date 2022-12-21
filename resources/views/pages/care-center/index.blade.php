@@ -16,10 +16,10 @@
                 <div class="iq-card-body">
                     <div class="table-responsive">
                     <span class="table-add float-right mb-3 mr-2">
-                        <button class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#careCenterModal">
-                            <i class="ri-add-fill"><span class="pl-1">
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#careCenterModal">
+                            <i class="ri-add-fill"></i><span class="pl-1">
                                 Add Care Center
-                            </span></i>
+                            </span>
                         </button>
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
@@ -102,7 +102,7 @@
 						</select>
 						<div class="invalid-feedback">Work unit invalid</div>
                     </div>
-            
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -149,7 +149,7 @@
 						</select>
 						<div class="invalid-feedback">Work unit invalid</div>
                     </div>
-            
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -188,7 +188,7 @@
 						<p>: {{$row->workUnit->WorkUnitName}}</p>
 					</div>
 				</div>
-			
+
 			</div>
 		</div>
 	</div>
@@ -199,6 +199,12 @@
 @endsection
 
 
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    } );
+</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
 <!-- SCRIPT VALIDASI FORM -->
@@ -221,3 +227,5 @@
         }, false);
     })();
 </script>
+
+@endpush

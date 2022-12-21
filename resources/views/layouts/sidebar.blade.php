@@ -1,17 +1,17 @@
 <div id="sidebar-scrollbar">
    <nav class="iq-sidebar-menu">
       <ul id="iq-sidebar-toggle" class="iq-menu">
-         
+
          <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Dashboard</span></li>
-         <li class="{{ request()->is('doctor-dashboard') ? ' active' : '' }}">
+         {{-- <li class="{{ request()->is('doctor-dashboard') ? ' active' : '' }}">
             <a href="{{url('doctor-dashboard')}}" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Doctor Dashboard</span></a>
-         </li>
+         </li> --}}
          <li class="{{ request()->is('hospital-dashboard') ? ' active' : '' }}">
-            <a href="{{url('hospital-dashboard')}}" class="iq-waves-effect"><i class="ri-home-8-fill"></i><span>Hospital Dashboard</span></a>
+            <a href="{{url('hospital-dashboard')}}" class="iq-waves-effect"><i class="ri-home-8-fill"></i><span>Dashboard</span></a>
          </li>
-         <li class="{{ request()->is('patient-dashboard') ? ' active' : '' }}">
+         {{-- <li class="{{ request()->is('patient-dashboard') ? ' active' : '' }}">
             <a href="{{url('patient-dashboard')}}" class="iq-waves-effect"><i class="ri-group-fill"></i><span>Patient Dashboard</span></a>
-         </li>
+         </li> --}}
          <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Apps</span></li>
 
          <li class="{{ request()->is('doctor','doctor/create') ? ' active' : '' }}">
@@ -36,8 +36,6 @@
             <a href="#patient-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-user-3-fill"></i><span>Patients</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="patient-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('patient')}}"><i class="ri-group-fill"></i>List Patients</a></li>
-               <li><a href="{{url('diagnose')}}"><i class="ri-file-list-3-fill"></i>Diagnose</a></li>
-               <li><a href="{{url('obtain')}}"><i class="ri-file-list-3-fill"></i>Obtain Records Patient</a></li>
                <li><a href="{{url('patient/create')}}"><i class="ri-user-add-fill"></i>Register New Patient</a></li>
             </ul>
          </li>
@@ -46,7 +44,8 @@
             <a href="#visit-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-file-paper-fill"></i><span>Visitations</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="visit-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('visit')}}"><i class="ri-file-list-fill"></i>List Visitations</a></li>
-               {{-- <li><a href="{{url('visit/create')}}"><i class="ri-file-list-3-fill"></i>Register New Patient</a></li> --}}
+               <li><a href="{{url('diagnose')}}"><i class="ri-file-list-3-fill"></i>Diagnose</a></li>
+               <li><a href="{{url('obtain')}}"><i class="ri-file-list-3-fill"></i>Obtain Records Patient</a></li>
             </ul>
          </li>
 

@@ -9,7 +9,8 @@ class PatientController extends Controller
     // SHOW LIST PATIENTS
     public function index()
     {
-        return view('pages.patient.index');
+        $data['patients'] = \App\Patient::with('person')->get();
+        return view('pages.patient.index',$data);
     }
 
     // SHOW REGISTER NEW PATIENT PAGE

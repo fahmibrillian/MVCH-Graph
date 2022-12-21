@@ -16,10 +16,10 @@
                 <div class="iq-card-body">
                     <div class="table-responsive">
                     <span class="table-add float-right mb-3 mr-2">
-                        <button class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#workUnitModal">
-                            <i class="ri-add-fill"><span class="pl-1">
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#workUnitModal">
+                            <i class="ri-add-fill"></i><span class="pl-1">
                                 Add Work Unit
-                            </span></i>
+                            </span>
                         </button>
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
@@ -101,7 +101,7 @@
 						<input type="text" name="LocationFloor" id="LocationFloor" class="form-control" placeholder="Location floor" required>
 						<div class="invalid-feedback">Location floor invalid</div>
 					</div>
-            
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -144,7 +144,7 @@
 						<input type="text" name="LocationFloor" id="LocationFloor" class="form-control" value="{{$row['LocationFloor']}}" required>
 						<div class="invalid-feedback">Location floor invalid</div>
 					</div>
-            
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -189,7 +189,7 @@
 						<p>: {{$row->LocationFloor}}</p>
 					</div>
 				</div>
-			
+
 			</div>
 		</div>
 	</div>
@@ -198,6 +198,15 @@
 
 
 @endsection
+
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    } );
+</script>
+
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
@@ -222,3 +231,4 @@
         }, false);
     })();
 </script>
+@endpush

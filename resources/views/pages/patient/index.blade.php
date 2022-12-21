@@ -23,6 +23,7 @@
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>MRN</th>
                                 <th>Address</th>
@@ -31,93 +32,38 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($patients as $index =>$patient)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>$320,800</td>
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    {{@$patient->person->Name}}
+                                </td>
+                                <td>
+                                    {{@$patient->MRN}}
+                                </td>
+                                <td>
+                                    {{@$patient->person->AddressCity}}
+                                </td>
+                                <td>
+                                    {{@$patient->person->Phone}}
+                                </td>
+                                <td>
+                                    <a href="{{route('employee.show', $patient->id)}}" class="btn btn-sm btn-primary">Detail</a>
+                                    <a href="{{route('employee.edit', $patient->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{route('employee.destroy', $patient->id)}}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>$372,000</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>$372,000</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>MRN</th>
                                 <th>Address</th>
@@ -133,3 +79,13 @@
 </div>
 
 @endsection
+
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    } );
+</script>
+
+@endpush

@@ -33,6 +33,7 @@
       <!-- Sweet Alert -->
       <link href="{{ asset('assets/css/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
 
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
       @stack('css')
 
    </head>
@@ -97,7 +98,7 @@
                confirmButtonText: 'Yes'
             }).then((result) => {
                if (result.value) {
-                  setTimeout(function(){ 
+                  setTimeout(function(){
 
                      document.location.href = href;
 
@@ -113,6 +114,6 @@
             })
          })
       </script>
-      
+
    </body>
 </html>

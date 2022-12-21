@@ -15,14 +15,15 @@
                 </div>
                 <div class="iq-card-body">
                     <div class="table-responsive">
-                    {{-- <span class="table-add float-right mb-3 mr-2">
-                        <button class="btn btn-sm iq-bg-success">
-                            <i class="ri-add-fill"><span class="pl-1">Add New Employee</span></i>
-                        </button>
-                    </span> --}}
+                    <span class="table-add float-right mb-3 mr-2">
+                        <a class="btn btn-sm btn-primary" href="/create">
+                            <span class="pl-1"><i class="ri-add-fill"></i>Add New Employee</span>
+                        </a>
+                    </span>
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Work Unit</th>
@@ -31,8 +32,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employee as $row)
+                            @foreach ($employee as $index => $row)
                             <tr>
+                                <td>
+                                    {{$index+1}}
+                                </td>
                                 <td>{{$row->person->Name}}</td>
                                 @if($row->nurse)
                                     <td>Nurse</td>
@@ -75,6 +79,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Work Unit</th>
