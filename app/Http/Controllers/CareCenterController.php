@@ -9,7 +9,9 @@ class CareCenterController extends Controller
     // SHOW LIST CARE CENTER
     public function index()
     {
-        return view('pages.care-center.index');
+        $data['care'] = \App\CareCenter::with('workUnit')->get();
+        // dd($data);
+        return view('pages.care-center.index', $data);
     }
 
     /**
