@@ -32,7 +32,7 @@
             </ul>
          </li>
 
-         <li class="{{ request()->is('patient','patient/create','patient/diagnose','patient/obtain') ? ' active' : '' }}">
+         <li class="{{ request()->is('patient','patient/create','diagnose','obtain') ? ' active' : '' }}">
             <a href="#patient-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-user-3-fill"></i><span>Patients</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="patient-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('patient')}}"><i class="ri-group-fill"></i>List Patients</a></li>
