@@ -24,76 +24,37 @@
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
-                            <tr>
+                            <tr align="center">
+                                <th width="20">No</th>
                                 <th>Care Center Name</th>
                                 <th>Work Unit Name</th>
-                                <th>Action</th>
+                                <th width="210">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Tokyo</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>San Francisco</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Edinburgh</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Tokyo</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>New York</td>
-                                <td>$372,000</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Tokyo</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>San Francisco</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Edinburgh</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Tokyo</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>New York</td>
-                                <td>$372,000</td>
-                            </tr>
+                            @foreach ($care as $row)
+                                <tr>
+                                    <td align="center">{{$loop->iteration}}</td>
+                                    <td>{{$row->CareCenterName}}</td>
+                                    <td>{{$row->workUnit->WorkUnitName}}</td>
+                                    <td align="center">
+                                        {{-- <a href="{{route('employee.show', $row->id)}}" class="btn btn-sm btn-primary">Detail</a> --}}
+                                        <button class="btn btn-sm btn-primary" title="Detail" data-toggle="modal" data-target="#detailData{{$row['id']}}">Detail</button>
+                                        {{-- <a href="{{route('employee.edit', $row->id)}}" class="btn btn-sm btn-warning">Edit</a> --}}
+                                        <button class="btn btn-sm btn-warning" title="Edit" data-toggle="modal" data-target="#editData{{$row['id']}}">Edit</button>
+                                        {{-- <form action="{{route('employee.destroy', $row->id)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form> --}}
+                                        <a href="{{$row->id}}/deleteCareCenter" class="btn btn-sm btn-danger hapusData" title="Hapus">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>No</th>
                                 <th>Care Center Name</th>
                                 <th>Work Unit Name</th>
                                 <th>Action</th>
@@ -107,7 +68,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Add Data -->
 <div class="modal fade" id="careCenterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -132,15 +93,11 @@
 						<select class="form-control" name="work_unit_id" id="work_unit_id" required>
 							<option value="" selected>Select Work Unit</option>
 
-							{{-- @foreach($unit as $units)
+							@foreach($care as $units)
 
-							<option value="{{ $units->id }}">{{ $units->work_unit_name }}</option>
+							<option value="{{ $units->workUnit->id }}">{{ $units->workUnit->WorkUnitName }}</option>
 
-							@endforeach --}}
-
-                            <option value="1">Work Unit 1</option>
-                            <option value="2">Work Unit 2</option>
-                            <option value="3">Work Unit 3</option>
+							@endforeach
 
 						</select>
 						<div class="invalid-feedback">Work unit invalid</div>
@@ -155,6 +112,88 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Edit Data -->
+@foreach ($care as $row)
+<div class="modal fade" id="editData{{$row['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Care Center</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{$row->id}}/updateCareCenter" method="POST" class="needs-validation" novalidate>
+
+					@csrf
+
+                    <div class="form-group">
+						<label for="CareCenterName">Care Center Name</label>
+						<input type="text" name="CareCenterName" id="CareCenterName" class="form-control" value="{{$row['CareCenterName']}}" required>
+						<div class="invalid-feedback">Care center name invalid</div>
+					</div>
+                    <div class="form-group">
+                        <label>Work Unit</label>
+						<select class="form-control" name="WordUnitId" id="WordUnitId" required>
+							<option value="{{$row['WorkUnitId']}}" selected>{{ !empty($row->workUnit) ? $row->workUnit['WorkUnitName']:'' }}</option>
+
+							@foreach($care as $units)
+
+							<option value="{{ $units->workUnit->id }}">{{ $units->workUnit->WorkUnitName }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Work unit invalid</div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+<!-- Modal Detail Data -->
+@foreach ($care as $row)
+<div class="modal fade" id="detailData{{$row['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Care Center</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+			<div class="modal-body">
+
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Care Center Name</p>
+					<div class="col-sm-8">
+						<p>: {{$row->CareCenterName}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Work Unit Name</p>
+					<div class="col-sm-8">
+						<p>: {{$row->workUnit->WorkUnitName}}</p>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 
 @endsection
