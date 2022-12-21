@@ -11,6 +11,8 @@ use App\Technician;
 use App\Staff;
 use App\WorkUnit;
 use App\CareCenter;
+use App\Physician;
+use App\Patient;
 
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ public function generate(){
             $carecenter->workUnit()->save($workunits);
         }
 
-        for ($i=0; $i < 200; $i++) {
+        for ($i=0; $i < 500; $i++) {
             $person = new Person;
             $person->country = $faker->country;
             $person->SSN = $faker->ssn;
@@ -98,7 +100,26 @@ public function generate(){
             $staff->workunit()->save($randomworkunit);
         }
 
+        $person = Person::with('employee')->skip(250)->take(50)->get();
+        foreach($person as $key => $value){
+            $physician = new Physician;
+            $physician->PagerNumber = $faker->unique()->randomNumber($nbDigits = 8, $strict = false);
+            $physician->DEANumber = $faker->unique()->randomNumber($nbDigits = 8, $strict = false);
+            $physician->Speciality = $faker->randomElement($array = array ('Cardiology','Dermatology','Endocrinology','Gastroenterology','Hematology','Infectious Disease','Nephrology','Neurology','Oncology','Ophthalmology','Orthopedics','Pulmonology','Rheumatology','Surgery','Urology','Allergy and Immunology','Anesthesiology','Emergency Medicine','Family Medicine','Internal Medicine','Obstetrics and Gynecology','Pediatrics','Psychiatry','Radiology','Sports Medicine','General Practice','Geriatrics','Nuclear Medicine','Pathology','Physical Medicine and Rehabilitation','Preventive Medicine','Psychology','Public Health and General Preventive Medicine','Anatomic Pathology','Clinical Pathology','Cytopathology','Dermatopathology','Forensic Pathology','Hematopathology','Neuropathology','Pathology Informatics','Pediatric Pathology','Pharmacology','Physician Assistant','Physician Assistant - Anesthesiology','Physician Assistant - Cardiology','Physician Assistant - Dermatology','Physician Assistant - Emergency Medicine','Physician Assistant - Family Medicine','Physician Assistant - Internal Medicine','Physician Assistant - Neurology','Physician Assistant - Obstetrics and Gynecology','Physician Assistant - Oncology','Physician Assistant - Orthopedics','Physician Assistant - Pediatrics','Physician Assistant - Psychiatry','Physician Assistant - Surgery','Physician Assistant - Urology','Physician Assistant - Allergy and Immunology','Physician Assistant - Anesthesiology','Physician Assistant - Emergency Medicine','Physician Assistant - Family Medicine','Physician Assistant - Internal Medicine','Physician Assistant - Neurology','Physician Assistant - Obstetrics and Gynecology','Physician Assistant - Oncology','Physician Assistant - Orthopedics','Physician Assistant - Pediatrics','Physician Assistant - Psychiatry','Physician Assistant - Surgery','Physician Assistant - Urology','Physician Assistant - Allergy and Immunology','Physician Assistant - Anesthesiology','Physician Assistant - Emergency Medicine','Physician Assistant - Family Medicine','Physician Assistant - Internal Medicine','Physician Assistant - Neurology','Physician Assistant - Obstetrics and Gynecology','Physician Assistant - Oncology','Physician Assistant - Orthopedics','Physician Assistant - Pediatrics','Physician Assistant - Psychiatry','Physician Assistant - Surgery','Physician Assistant - Urology'));
+            $physician->save();
+            $physician->person()->save($value);
+        }
 
+        //get random person
+        $person = Person::with('employee')->skip(300)->take(50)->get();
+
+        foreach($person as $key => $value){
+            $patient = new Patient;
+            // MRN = Medical Record Number Unique
+            $patient->MRN = $faker->unique()->randomNumber($nbDigits = 8, $strict = false);
+            $patient->save();
+            $patient->person()->save($value);
+        }
 
     }
 

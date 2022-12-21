@@ -7,9 +7,12 @@ use NeoEloquent;
 class Physician extends NeoEloquent {
 
     protected $label =  'Physician';
-    protected $primaryKey = 'uuid';
-    public $incrementing = false;
     protected $fillable = ['PhisicianID','PagerNumber','DEANumber','Speciality'];
 
     public $timestamps = false;
+
+    public function person()
+    {
+        return $this->hasOne('App\Person','EMPLOYED');
+    }
 }

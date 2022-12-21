@@ -10,4 +10,9 @@ class Patient extends NeoEloquent {
     protected $fillable = ['MRN'];
 
     public $timestamps = false;
+
+    public function person()
+    {
+        return $this->hasOne('App\Person','PATIENT');
+    }
 }
