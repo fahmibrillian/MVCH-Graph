@@ -36,7 +36,7 @@
       @stack('css')
 
    </head>
-   <body class="sidebar-main-menu">
+   <body class="sidebar-main-menu" onload="@yield('onload')">
       <!-- loader Start -->
       <div id="loading">
          <div id="loading-center">
