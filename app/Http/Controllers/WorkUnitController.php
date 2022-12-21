@@ -9,7 +9,9 @@ class WorkUnitController extends Controller
     // SHOW LIST WORK UNIT
     public function index()
     {
-        return view('pages.work-unit.index');
+        $data['work'] = \App\WorkUnit::get();
+        // dd($data);
+        return view('pages.work-unit.index', $data);
     }
 
     /**

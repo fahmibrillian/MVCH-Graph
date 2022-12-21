@@ -24,89 +24,39 @@
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
-                            <tr>
+                            <tr align="center">
+                                <th width="20">No</th>
                                 <th>Work Unit Name</th>
                                 <th>Location Facility</th>
-                                <th>Location Floor</th>
-                                <th>Action</th>
+                                <th width="150">Location Floor</th>
+                                <th width="210">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>$372,000</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>$162,700</td>
-                            </tr>
-                            <tr>
-                                <td>Brielle Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>$372,000</td>
-                            </tr>
+                            @foreach ($work as $row)
+                                <tr>
+                                    <td align="center">{{$loop->iteration}}</td>
+                                    <td>{{$row->WorkUnitName}}</td>
+                                    <td>{{$row->LocationFacility}}</td>
+                                    <td>{{$row->LocationFloor}}</td>
+                                    <td align="center">
+                                        {{-- <a href="{{route('employee.show', $row->id)}}" class="btn btn-sm btn-primary">Detail</a> --}}
+                                        <button class="btn btn-sm btn-primary" title="Detail" data-toggle="modal" data-target="#detailData{{$row['id']}}">Detail</button>
+                                        {{-- <a href="{{route('employee.edit', $row->id)}}" class="btn btn-sm btn-warning">Edit</a> --}}
+                                        <button class="btn btn-sm btn-warning" title="Edit" data-toggle="modal" data-target="#editData{{$row['id']}}">Edit</button>
+                                        {{-- <form action="{{route('employee.destroy', $row->id)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form> --}}
+                                        <a href="{{$row->id}}/deleteWorkUnit" class="btn btn-sm btn-danger hapusData" title="Hapus">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr align="center">
+                                <th>No</th>
                                 <th>Work Unit Name</th>
                                 <th>Location Facility</th>
                                 <th>Location Floor</th>
@@ -121,7 +71,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Add Data -->
 <div class="modal fade" id="workUnitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -137,18 +87,18 @@
 					@csrf
 
 					<div class="form-group">
-						<label for="work_unit_name">Work Unit Name</label>
-						<input type="text" name="work_unit_name" id="work_unit_name" class="form-control" placeholder="Work unit name" required>
+						<label for="WorkUnitName">Work Unit Name</label>
+						<input type="text" name="WorkUnitName" id="WorkUnitName" class="form-control" placeholder="Work unit name" required>
 						<div class="invalid-feedback">Work unit name invalid</div>
 					</div>
 					<div class="form-group">
-						<label for="location_facility">Location Facility</label>
-						<input type="text" name="location_facility" id="location_facility" class="form-control" placeholder="Location facility" required>
+						<label for="LocationFacility">Location Facility</label>
+						<input type="text" name="LocationFacility" id="LocationFacility" class="form-control" placeholder="Location facility" required>
 						<div class="invalid-feedback">Location facility invalid</div>
 					</div>
                     <div class="form-group">
-						<label for="location_floor">Location Floor</label>
-						<input type="text" name="location_floor" id="location_floor" class="form-control" placeholder="Location floor" required>
+						<label for="LocationFloor">Location Floor</label>
+						<input type="text" name="LocationFloor" id="LocationFloor" class="form-control" placeholder="Location floor" required>
 						<div class="invalid-feedback">Location floor invalid</div>
 					</div>
             
@@ -161,6 +111,90 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Edit Data -->
+@foreach ($work as $row)
+<div class="modal fade" id="editData{{$row['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Work Unit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<form action="{{$row->id}}/updateWorkUnit" method="POST" class="needs-validation" novalidate>
+
+					@csrf
+
+					<div class="form-group">
+						<label for="WorkUnitName">Work Unit Name</label>
+						<input type="text" name="WorkUnitName" id="WorkUnitName" class="form-control" value="{{$row['WorkUnitName']}}" required>
+						<div class="invalid-feedback">Work unit name invalid</div>
+					</div>
+					<div class="form-group">
+						<label for="LocationFacility">Location Facility</label>
+						<input type="text" name="LocationFacility" id="LocationFacility" class="form-control" value="{{$row['LocationFacility']}}" required>
+						<div class="invalid-feedback">Location facility invalid</div>
+					</div>
+                    <div class="form-group">
+						<label for="LocationFloor">Location Floor</label>
+						<input type="text" name="LocationFloor" id="LocationFloor" class="form-control" value="{{$row['LocationFloor']}}" required>
+						<div class="invalid-feedback">Location floor invalid</div>
+					</div>
+            
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
+
+
+<!-- Modal Detail Data -->
+@foreach ($work as $row)
+<div class="modal fade" id="detailData{{$row['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Work Unit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+			<div class="modal-body">
+
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Work Unit Name</p>
+					<div class="col-sm-8">
+						<p>: {{$row->WorkUnitName}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Location Facility</p>
+					<div class="col-sm-8">
+						<p>: {{$row->LocationFacility}}</p>
+					</div>
+				</div>
+				<div class="form-group row">
+					<p class=" col-sm-4 font-weight-bold">Location Floor</p>
+					<div class="col-sm-8">
+						<p>: {{$row->LocationFloor}}</p>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 
 @endsection
