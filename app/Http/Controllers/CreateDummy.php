@@ -15,8 +15,8 @@ use App\CareCenter;
 use Illuminate\Http\Request;
 
 class CreateDummy extends Controller
+{
 public function generate(){
-        {
         $faker = Factory::create();
         foreach(range(1,5) as $index){
             $workunit = new WorkUnit;
