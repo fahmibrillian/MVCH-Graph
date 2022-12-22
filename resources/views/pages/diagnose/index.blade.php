@@ -16,8 +16,10 @@
                 <div class="iq-card-body">
                     <div class="table-responsive">
                     <span class="table-add float-right mb-3 mr-2">
-                        <button class="btn btn-sm iq-bg-success"  data-toggle="modal" data-target="#diagnosisModal">
-                            <i class="ri-add-fill"><span class="pl-1">Add New Diagnosis</span></i>
+                        <button class="btn btn-sm btn-primary"  data-toggle="modal" data-target="#diagnosisModal">
+                            <i class="ri-add-fill"></i><span class="pl-1">
+                                Add New Diagnosis
+                            </span>
                         </button>
                     </span>
                     <table id="datatable" class="table table-striped table-bordered" >
@@ -70,7 +72,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="diagnosis/addDiagnosis" method="POST" class="needs-validation" novalidate>
+                <form action="addDiagnosis" method="POST" class="needs-validation" novalidate>
 
 					@csrf
 

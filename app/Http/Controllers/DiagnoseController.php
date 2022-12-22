@@ -32,7 +32,26 @@ class DiagnoseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'DiagnosisCode' => 'required|string',
+            'DiagnosisName' => 'required|string'
+        ], [
+            'DiagnosisCode.required' => 'Diagnosis code must be fill',
+            'DiagnosisCode.string' => 'Diagnosis code must be string',
+            'DiagnosisName.required' => 'Diagnosis name must fill',
+            'DiagnosisName.string' => 'Diagnosis name must be string'
+        ]);
+
+        //Add Diagnosis to Database
+        $diagnosis = \App\Diagnosis::create([
+            'DiagnosisCode' => $request->DiagnosisCode,
+            'DiagnosisName' => $request->DiagnosisName
+        ]);
+
+        // dd($diagnosis);
+
+        return redirect('/diagnosis')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -66,7 +85,29 @@ class DiagnoseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'DiagnosisCode' => 'required|string',
+            'DiagnosisName' => 'required|string'
+        ], [
+            'DiagnosisCode.required' => 'Diagnosis code must be fill',
+            'DiagnosisCode.string' => 'Diagnosis code must be string',
+            'DiagnosisName.required' => 'Diagnosis name must fill',
+            'DiagnosisName.string' => 'Diagnosis name must be string'
+        ]);
+
+        // Find Data by Id
+        $diagnosis = \App\Diagnosis::find($id);
+
+        // Update Data
+        $diagnosis->update([
+            'DiagnosisCode' => $request->DiagnosisCode,
+            'DiagnosisName' => $request->DiagnosisName
+        ]);
+
+        // dd($diagnosis);
+
+        return redirect('/diagnosis')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -77,6 +118,14 @@ class DiagnoseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find Data by Id
+        $diagnosis = \App\Diagnosis::find($id);
+
+        // Delete Data
+        $diagnosis->delete();
+
+        // dd($diagnosis);
+
+        return redirect('/diagnosis');
     }
 }

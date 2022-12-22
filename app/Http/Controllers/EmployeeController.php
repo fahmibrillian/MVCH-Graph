@@ -10,9 +10,9 @@ class EmployeeController extends Controller
     public function index()
     {
         $data['employee'] = \App\Employee::with('staff.workUnit','nurse.careCenter.workUnit','technician.workUnit','person')->get();
-        $person = \App\Person::all();
-        dd($person->employee);
-        // return view('pages.employee.index', $data);
+        // $person = \App\Person::all();
+        // dd($person);
+        return view('pages.employee.index', $data);
     }
 
     // SHOW CREATE NEW EMPLOYEE PAGE

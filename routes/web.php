@@ -32,6 +32,9 @@ Route::resource('employee', EmployeeController::class);//->middleware('auth');
 // Management Data Patients and Diagnoses
 Route::resource('patient', PatientController::class);//->middleware('auth);
 Route::resource('diagnosis', DiagnoseController::class);//->middleware('auth);
+Route::post('addDiagnosis', 'DiagnoseController@store');//->middleware('auth');
+Route::post('{id}/updateDiagnosis', 'DiagnoseController@update');//->middleware('auth');
+Route::get('{id}/deleteDiagnosis', 'DiagnoseController@destroy');//->middleware('auth');
 
 // Management Data Visitations
 Route::resource('visit', VisitController::class);//->middleware('auth');
