@@ -97,6 +97,22 @@ return [
             'port'   => env('DB_PORT', '7474'),
             'username' => env('DB_USERNAME', null),
             'password' => env('DB_PASSWORD', null)
+        ],
+
+        'neo4j_replica1' => [
+            'driver' => 'neo4j',
+            'host'   => env('DB_HOST_REPLICA1', 'localhost'),
+            'port'   => env('DB_PORT_REPLICA1', '7474'),
+            'username' => env('DB_USERNAME_REPLICA1', null),
+            'password' => env('DB_PASSWORD_REPLICA1', null)
+        ],
+
+        'neo4j_replica2' => [
+            'driver' => 'neo4j',
+            'host'   => env('DB_HOST_REPLICA2', 'localhost'),
+            'port'   => env('DB_PORT_REPLICA2', '7474'),
+            'username' => env('DB_USERNAME_REPLICA2', null),
+            'password' => env('DB_PASSWORD_REPLICA2', null)
         ]
     ],
 

@@ -71,7 +71,7 @@
         const config = {
             containerId: "neovis",
             neo4j: {
-                serverUrl: "bolt://localhost:7687",
+                serverUrl: "bolt://34.128.94.247:11687",
                 serverUser: "neo4j",
                 serverPassword: "root",
             },
@@ -106,6 +106,10 @@
                     [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
                         function: {
                             title: (props) => NeoVis.objectToTitleHtml(props),
+                            //icon
+                            icon: (props) => {
+                                return 'hospital';
+                            }
                         },
                         static: {
                             font: {
