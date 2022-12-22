@@ -32,4 +32,17 @@ class Employee extends NeoEloquent {
     {
         return $this->hasOne('App\Technician','WORKS_AS');
     }
+
+    public function getConnection()
+    {
+        try {
+            return parent::getConnection();
+        } catch (\Exception $e) {
+            try {
+                return $this->resolveConnection('neo4j_replica1');
+            } catch (\Exception $e) {
+                return $this->resolveConnection('neo4j_replica2');
+            }
+        }
+    }
 }

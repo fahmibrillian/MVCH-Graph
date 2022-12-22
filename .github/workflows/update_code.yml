@@ -3,10 +3,24 @@ on:
   push: 
     branches: [main]
 jobs: 
-  build: 
+  build_1: 
     runs-on: self-hosted
     steps: 
     - run: |
-        cd /var/www/MVCH-Graph
+        cd /var/www/MVCH-Graph-1
+        git pull origin main
+        composer install
+  build_2: 
+    runs-on: self-hosted
+    steps: 
+    - run: |
+        cd /var/www/MVCH-Graph-2
+        git pull origin main
+        composer install
+  build_3: 
+    runs-on: self-hosted
+    steps: 
+    - run: |
+        cd /var/www/MVCH-Graph-3
         git pull origin main
         composer install
