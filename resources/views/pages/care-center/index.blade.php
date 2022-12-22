@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 
-@section('title', 'Work Units')
+@section('title', 'Care Centers')
 
 @section('content')
 
@@ -79,18 +79,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="care-center/addCareCenter" method="POST" class="needs-validation" novalidate>
+                <form action="addCareCenter" method="POST" class="needs-validation" novalidate>
 
 					@csrf
 
                     <div class="form-group">
-						<label for="care_center_name">Care Center Name</label>
-						<input type="text" name="care_center_name" id="care_center_name" class="form-control" placeholder="Care center name" required>
+						<label for="CareCenterName">Care Center Name</label>
+						<input type="text" name="CareCenterName" id="CareCenterName" class="form-control" placeholder="Care center name" required>
 						<div class="invalid-feedback">Care center name invalid</div>
 					</div>
                     <div class="form-group">
                         <label>Work Unit</label>
-						<select class="form-control" name="work_unit_id" id="work_unit_id" required>
+						<select class="form-control" name="WorkUnitId" id="WorkUnitId" required>
 							<option value="" selected>Select Work Unit</option>
 
 							@foreach($care as $units)
@@ -137,7 +137,7 @@
 					</div>
                     <div class="form-group">
                         <label>Work Unit</label>
-						<select class="form-control" name="WordUnitId" id="WordUnitId" required>
+						<select class="form-control" name="WorkUnitId" id="WordUnitId" required>
 							<option value="{{$row['WorkUnitId']}}" selected>{{ !empty($row->workUnit) ? $row->workUnit['WorkUnitName']:'' }}</option>
 
 							@foreach($care as $units)

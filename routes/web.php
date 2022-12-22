@@ -31,14 +31,20 @@ Route::resource('employee', EmployeeController::class);//->middleware('auth');
 
 // Management Data Patients and Diagnoses
 Route::resource('patient', PatientController::class);//->middleware('auth);
-Route::resource('diagnose', DiagnoseController::class);//->middleware('auth);
+Route::resource('diagnosis', DiagnoseController::class);//->middleware('auth);
 
 // Management Data Visitations
 Route::resource('visit', VisitController::class);//->middleware('auth');
 
 // Management Data Work Units and Care Centers
 Route::resource('workunit', WorkUnitController::class);//->middleware('auth');
+Route::post('addWorkUnit', 'WorkUnitController@store');//->middleware('auth');
+Route::post('{id}/updateWorkUnit', 'WorkUnitController@update');//->middleware('auth');
+Route::get('{id}/deleteWorkUnit', 'WorkUnitController@destroy');//->middleware('auth');
 Route::resource('carecenter', CareCenterController::class);//->middleware('auth');
+Route::post('addCareCenter', 'CareCenterController@store');//->middleware('auth');
+Route::post('{id}/updateCareCenter', 'CareCenterController@update');//->middleware('auth');
+Route::get('{id}/deleteCareCenter', 'CareCenterController@destroy');//->middleware('auth');
 
 Route::get('doctor-dashboard',function(){
     return view('pages.doctor-dashboard.index');//->middleware('auth');

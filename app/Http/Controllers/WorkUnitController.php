@@ -32,7 +32,30 @@ class WorkUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'WorkUnitName' => 'required|string',
+            'LocationFacility' => 'required|string',
+            'LocationFloor' => 'required|numeric'
+        ], [
+            'WorkUnitName.required' => 'Work unit name must be fill',
+            'WorkUnitName.string' => 'Work unit name must be string',
+            'LocationFacility.required' => 'Location facility must fill',
+            'LocationFacility.string' => 'Location facility must be string',
+            'LocationFloor.required' => 'Location floor must be fill',
+            'LocationFloor.numeric' => 'Location floor must be numeric'
+        ]);
+
+        //Add Work Unit to Database
+        $workUnit = \App\WorkUnit::create([
+            'WorkUnitName' => $request->WorkUnitName,
+            'LocationFacility' => $request->LocationFacility,
+            'LocationFloor' => $request->LocationFloor
+        ]);
+
+        // dd($workUnit);
+
+        return redirect('/workunit')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -66,7 +89,33 @@ class WorkUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'WorkUnitName' => 'required|string',
+            'LocationFacility' => 'required|string',
+            'LocationFloor' => 'required|numeric'
+        ], [
+            'WorkUnitName.required' => 'Work unit name must be fill',
+            'WorkUnitName.string' => 'Work unit name must be string',
+            'LocationFacility.required' => 'Location facility must fill',
+            'LocationFacility.string' => 'Location facility must be string',
+            'LocationFloor.required' => 'Location floor must be fill',
+            'LocationFloor.numeric' => 'Location floor must be numeric'
+        ]);
+
+        // Find Data by Id
+        $workUnit = \App\WorkUnit::find($id);
+
+        // Update Data
+        $workUnit->update([
+            'WorkUnitName' => $request->WorkUnitName,
+            'LocationFacility' => $request->LocationFacility,
+            'LocationFloor' => $request->LocationFloor
+        ]);
+
+        // dd($workUnit);
+
+        return redirect('/workunit')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -77,6 +126,14 @@ class WorkUnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find Data by Id
+        $workUnit = \App\WorkUnit::find($id);
+
+        // Delete Data
+        $workUnit->delete();
+
+        // dd($workUnit);
+
+        return redirect('/workunit');
     }
 }

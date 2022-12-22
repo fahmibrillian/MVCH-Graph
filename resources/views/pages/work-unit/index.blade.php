@@ -82,7 +82,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="work-unit/addWorkUnit" method="POST" class="needs-validation" novalidate>
+                <form action="addWorkUnit" method="POST" class="needs-validation" novalidate>
 
 					@csrf
 

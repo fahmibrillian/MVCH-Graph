@@ -9,7 +9,9 @@ class DiagnoseController extends Controller
     // SHOW LIST PATIENT'S DIAGNOSE
     public function index()
     {
-        return view('pages.diagnose.index');
+        $data['diagnosis'] = \App\Diagnosis::get();
+        // dd($data);
+        return view('pages.diagnose.index', $data);
     }
 
     /**

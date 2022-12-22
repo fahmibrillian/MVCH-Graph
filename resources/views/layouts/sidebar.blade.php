@@ -32,7 +32,7 @@
             </ul>
          </li>
 
-         <li class="{{ request()->is('patient','patient/create','diagnose','obtain') ? ' active' : '' }}">
+         <li class="{{ request()->is('patient','patient/create') ? ' active' : '' }}">
             <a href="#patient-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-user-3-fill"></i><span>Patients</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="patient-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('patient')}}"><i class="ri-group-fill"></i>List Patients</a></li>
@@ -40,11 +40,11 @@
             </ul>
          </li>
 
-         <li class="{{ request()->is('visit','visit/create') ? ' active' : '' }}">
+         <li class="{{ request()->is('visit','diagnosis','obtain') ? ' active' : '' }}">
             <a href="#visit-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-file-paper-fill"></i><span>Visitations</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="visit-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                <li><a href="{{url('visit')}}"><i class="ri-file-list-fill"></i>List Visitations</a></li>
-               <li><a href="{{url('diagnose')}}"><i class="ri-file-list-3-fill"></i>Diagnose</a></li>
+               <li><a href="{{url('diagnosis')}}"><i class="ri-file-list-3-fill"></i>Diagnosis</a></li>
                <li><a href="{{url('obtain')}}"><i class="ri-file-list-3-fill"></i>Obtain Records Patient</a></li>
             </ul>
          </li>

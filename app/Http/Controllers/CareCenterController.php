@@ -32,7 +32,27 @@ class CareCenterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'CareCenterName' => 'required|string',
+            'WorkUnitId' => 'required'
+        ], [
+            'CareCenterName.required' => 'Care center name must be fill',
+            'CareCenterName.string' => 'Care center name must be string',
+            'WorkUnitId.required' => 'Work unit must fill'
+        ]);
+
+        //Add Care to Database
+        $careCenter = \App\CareCenter::create([
+            'CareCenterName' => $request->CareCenterName
+        ]);
+
+        $workUnit = \App\WorkUnit::find($request->WorkUnitId);
+        $careCenter->workUnit()->save($workUnit);
+
+        // dd($workUnit);
+
+        return redirect('/carecenter')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -66,7 +86,30 @@ class CareCenterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Form Validation
+        $request->validate([
+            'CareCenterName' => 'required|string',
+            'WorkUnitId' => 'required'
+        ], [
+            'CareCenterName.required' => 'Care center name must be fill',
+            'CareCenterName.string' => 'Care center name must be string',
+            'WorkUnitId.required' => 'Work unit must fill'
+        ]);
+
+        // Find Data by Id
+        $careCenter = \App\CareCenter::find($id);
+
+        //Update Data
+        $careCenter->update([
+            'CareCenterName' => $request->CareCenterName
+        ]);
+
+        $workUnit = \App\WorkUnit::find($request->WorkUnitId);
+        $careCenter->workUnit()->save($workUnit);
+
+        // dd($workUnit);
+
+        return redirect('/carecenter')->with('sukses', 'Data has been added.');
     }
 
     /**
@@ -77,6 +120,14 @@ class CareCenterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find Data by Id
+        $careCenter = \App\CareCenter::find($id);
+
+        // Delete Data
+        $careCenter->delete();
+
+        // dd($workUnit);
+
+        return redirect('/carecenter');
     }
 }
