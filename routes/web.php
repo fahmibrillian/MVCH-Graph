@@ -34,12 +34,16 @@ Route::group(['middleware' => ['auth']], function () {
     // Management Data Employees
     Route::resource('employee', EmployeeController::class); //->middleware('auth');
 
-    // Management Data Patients and Diagnoses
+    // Management Data Patients
     Route::resource('patient', PatientController::class); //->middleware('auth);
+
+    // Management Data Diagnosis and Diagnose Patient
     Route::resource('diagnosis', DiagnoseController::class); //->middleware('auth);
     Route::post('addDiagnosis', 'DiagnoseController@store'); //->middleware('auth');
     Route::post('{id}/updateDiagnosis', 'DiagnoseController@update'); //->middleware('auth');
     Route::get('{id}/deleteDiagnosis', 'DiagnoseController@destroy'); //->middleware('auth');
+    Route::get('diagnose', 'DiagnoseController@diagnose');
+    Route::post('addDiagnose', 'DiagnoseController@addDiagnose');
 
     // Management Data Visitations
     Route::resource('visit', VisitController::class); //->middleware('auth');

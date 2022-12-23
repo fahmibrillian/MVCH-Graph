@@ -108,5 +108,10 @@ class VisitController extends Controller
 
     public function destroy($id)
     {
+        $visit = \App\Visit::find($id);
+
+        $visit->delete();
+
+        return redirect('/visit');
     }
 }

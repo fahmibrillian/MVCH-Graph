@@ -44,12 +44,13 @@
                 </li>
             @endif
 
-            <li class="{{ request()->is('patient', 'patient/create') ? ' active' : '' }}">
+            <li class="{{ request()->is('patient', 'patient/create', 'diagnose') ? ' active' : '' }}">
                 <a href="#patient-info" class="iq-waves-effect collapsed" data-toggle="collapse"
                     aria-expanded="false"><i class="ri-user-3-fill"></i><span>Patients</span><i
                         class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                 <ul id="patient-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     <li><a href="{{ url('patient') }}"><i class="ri-group-fill"></i>List Patients</a></li>
+                    <li><a href="{{ url('diagnose') }}"><i class="ri-file-list-3-fill"></i>Patient's Diagnose</a></li>
                     <li><a href="{{ url('patient/create') }}"><i class="ri-user-add-fill"></i>Register New
                             Patient</a>
                     </li>

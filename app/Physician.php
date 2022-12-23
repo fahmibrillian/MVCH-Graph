@@ -20,6 +20,10 @@ class Physician extends NeoEloquent {
         return $this->hasMany('App\Visit','HANDLES');
     }
 
+    public function diagnose(){
+        return $this->hasOne('App\Diagnose','DIAGNOSE');
+    }
+
     public function getConnection()
     {
         try {

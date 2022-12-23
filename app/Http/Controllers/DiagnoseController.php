@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class DiagnoseController extends Controller
 {
-    // SHOW LIST PATIENT'S DIAGNOSE
+    // SHOW LIST DIAGNOSIS
     public function index()
     {
         $data['diagnosis'] = \App\Diagnosis::get();
@@ -14,14 +14,20 @@ class DiagnoseController extends Controller
         return view('pages.diagnose.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // SHOW LIST DIAGNOSE PATIENT
+    public function diagnose()
     {
-        //
+        $diagnose = \App\Diagnose::get();
+        $patient = \App\Patient::get();
+        $physician = \App\Physician::get();
+        $diagnosis = \App\Diagnosis::get();
+        // dd($diagnose);
+        return view('pages.diagnose.diagnose', compact(
+            'diagnose',
+            'patient',
+            'physician',
+            'diagnosis'
+        ));
     }
 
     /**
@@ -52,6 +58,40 @@ class DiagnoseController extends Controller
         // dd($diagnosis);
 
         return redirect('/diagnosis')->with('success', 'Data has been added.');
+    }
+
+    public function addDiagnose(Request $request){
+        $request->validate([
+            'PhisicianID' => 'required',
+            'MRN' => 'required',
+            'DiagnosisId' => 'required',
+            'Time' => 'required',
+            'Description' => 'required|string'
+        ], [
+            'PhisicianID.required' => 'Physician must be fill',
+            'MRN.required' => 'Patient must be fill',
+            'DiagnosisId.required' => 'Diagnosis must be fill',
+            'Time.required' => 'Time must be fill',
+            'Description.required' => 'Description must be fill',
+            'Description.string' => 'Description must be string'
+        ]);
+
+        $diagnose = \App\Diagnose::create([
+            'Time' => $request->Time,
+            'Description' => $request->Description
+        ]);
+
+        $physician = \App\Physician::find($request->PhisicianID);
+        $physician->diagnose()->save($diagnose);
+
+        $patient = \App\Patient::find($request->MRN);
+
+        $diagnosis = \App\Diagnosis::find($request->DiagnosisId);
+        $diagnose->diagnosis()->save($diagnosis);
+
+        // dd($diagnosis);
+
+        return redirect('/diagnose')->with('success', 'Data has been added.');
     }
 
     /**
