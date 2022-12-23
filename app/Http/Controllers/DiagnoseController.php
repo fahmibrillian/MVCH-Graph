@@ -51,7 +51,7 @@ class DiagnoseController extends Controller
 
         // dd($diagnosis);
 
-        return redirect('/diagnosis')->with('sukses', 'Data has been added.');
+        return redirect('/diagnosis')->with('success', 'Data has been added.');
     }
 
     /**
@@ -107,7 +107,7 @@ class DiagnoseController extends Controller
 
         // dd($diagnosis);
 
-        return redirect('/diagnosis')->with('sukses', 'Data has been added.');
+        return redirect('/diagnosis')->with('success', 'Data has been added.');
     }
 
     /**
