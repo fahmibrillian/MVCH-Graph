@@ -23,43 +23,43 @@
                   <table id="datatable" class="table table-striped table-bordered" >
                      <thead>
                         <tr>
-                           <th>#</th>
+                           <th width="20">No</th>
                            <th>Name</th>
                            <th>DEA Number</th>
                            <th>Speciality</th>
-                           <th>Action</th>
+                           <th width="210">Action</th>
                         </tr>
                      </thead>
                      <tbody>
                         @foreach ($physicians as $index => $physician)
                         <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
+                           <td align="center">
+                              {{$index+1}}
+                           </td>
                            <td>
-                                {{@$physician->person->Name}}
-                            </td>
+                              {{@$physician->person->Name}}
+                           </td>
                            <td>
-                                {{@$physician->DEANumber}}
-                            </td>
+                              {{@$physician->DEANumber}}
+                           </td>
                            <td>
-                                {{@$physician->Speciality}}
-                            </td>
-                           <td>
-                                <a href="{{route('doctor.edit', $physician->id)}}" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="{{route('doctor.show', $physician->id)}}" class="btn btn-sm btn-warning">View</a>
-                                <form action="{{route('doctor.destroy', $physician->id)}}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                              {{@$physician->Speciality}}
+                           </td>
+                           <td align="center">
+                              <a href="{{route('doctor.edit', $physician->id)}}" class="btn btn-sm btn-primary">Edit</a>
+                              <a href="{{route('doctor.show', $physician->id)}}" class="btn btn-sm btn-warning">View</a>
+                              <form action="{{route('doctor.destroy', $physician->id)}}" method="POST" class="d-inline">
+                                 @csrf
+                                 @method('DELETE')
+                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                              </form>
                            </td>
                         </tr>
                         @endforeach
                      </tbody>
                      <tfoot>
                         <tr>
-                           <th>#</th>
+                           <th>No</th>
                            <th>Name</th>
                            <th>DEA Number</th>
                            <th>Speciality</th>

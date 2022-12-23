@@ -93,9 +93,9 @@
 						<select class="form-control" name="WorkUnitId" id="WorkUnitId" required>
 							<option value="" selected>Select Work Unit</option>
 
-							@foreach($care as $units)
+							@foreach($workUnit as $units)
 
-							<option value="{{ $units->workUnit->id }}">{{ $units->workUnit->WorkUnitName }}</option>
+							<option value="{{ $units->id }}">{{ $units->WorkUnitName }}</option>
 
 							@endforeach
 

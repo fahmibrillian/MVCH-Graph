@@ -9,9 +9,13 @@ class CareCenterController extends Controller
     // SHOW LIST CARE CENTER
     public function index()
     {
-        $data['care'] = \App\CareCenter::with('workUnit')->get();
+        $care = \App\CareCenter::get();
+        $workUnit = \App\WorkUnit::get();
         // dd($data);
-        return view('pages.care-center.index', $data);
+        return view('pages.care-center.index', compact(
+            'care',
+            'workUnit'
+        ));
     }
 
     /**

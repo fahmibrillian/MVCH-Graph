@@ -39,6 +39,9 @@ Route::get('{id}/deleteDiagnosis', 'DiagnoseController@destroy');//->middleware(
 // Management Data Visitations
 Route::resource('visit', VisitController::class);//->middleware('auth');
 
+// Management Data Obtain Records
+Route::resource('obtain', ObtainRecordController::class);//->middleware('auth');
+
 // Management Data Work Units and Care Centers
 Route::resource('workunit', WorkUnitController::class);//->middleware('auth');
 Route::post('addWorkUnit', 'WorkUnitController@store');//->middleware('auth');

@@ -28,7 +28,7 @@
                                 <th width="20">No</th>
                                 <th>Diagnosis Code</th>
                                 <th>Diagnosis Name</th>
-                                <th>Action</th>
+                                <th width="210">Action</th>
                             </tr>
                         </thead>
                         <tbody>
