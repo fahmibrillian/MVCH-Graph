@@ -37,7 +37,6 @@ class WorkUnitController extends Controller
             'LocationFloor' => $request->LocationFloor
         ]);
 
-
         return redirect('/workunit')->with('success', 'Data has been added.');
     }
 

@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Management Data Visitations
     Route::resource('visit', VisitController::class); //->middleware('auth');
+    Route::post('addVisit', 'VisitController@store'); //->middleware('auth');
+    Route::post('{id}/updateVisit', 'VisitController@update'); //->middleware('auth');
+    Route::get('{id}/deleteVisit', 'VisitController@destroy'); //->middleware('auth');
+
 
     // Management Data Work Units and Care Centers
     Route::resource('workunit', WorkUnitController::class); //->middleware('auth');

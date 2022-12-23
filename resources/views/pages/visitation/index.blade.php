@@ -25,17 +25,17 @@
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th width="20">No</th>
                                 <th>Name</th>
                                 <th>Care Center</th>
                                 <th>Visit Date</th>
-                                <th>Action</th>
+                                <th width="210">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($visits as $index=>$visit)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td align="center">{{$index+1}}</td>
                                 <td>
                                     {{$visit->patient->person->Name}}
                                 </td>
@@ -45,14 +45,10 @@
                                 <td>
                                     {{$visit->VisitDate}}
                                 </td>
-                                <td>
-                                    <a href="{{route('visit.show', $visit->id)}}" class="btn btn-sm btn-primary">Detail</a>
-                                    <a href="{{route('visit.edit', $visit->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                                    <form action="{{route('visit.destroy', $visit->id)}}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
+                                <td align="center">
+                                    <button class="btn btn-sm btn-primary" title="Detail" data-toggle="modal" data-target="#detailData{{$visit['id']}}">Detail</button>
+                                    <button class="btn btn-sm btn-warning" title="Edit" data-toggle="modal" data-target="#editData{{$visit['id']}}">Edit</button>
+                                    <a href="{{$visit->id}}/deleteCareCenter" class="btn btn-sm btn-danger hapusData" title="Hapus">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -79,65 +75,66 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Care Center</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Visitation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="care-center/addCareCenter" method="POST" class="needs-validation" novalidate>
+                <form action="/addVisit" method="POST" class="needs-validation" novalidate>
 
 					@csrf
 
-                    {{-- <div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Patient name" required>
-						<div class="invalid-feedback">Patient name invalid</div>
-					</div> --}}
                     <div class="form-group">
                         <label>Patient</label>
-						<select class="form-control" name="mrn_patient" id="mrn_patient" required>
+						<select class="form-control" name="MRN" id="MRN" required>
 							<option value="" selected>Select Patient</option>
 
-							{{-- @foreach($patient as $patients)
+							@foreach($patient as $patients)
 
-							<option value="{{ $patients->mrn }}">{{ $patients->name }}</option>
+							<option value="{{ $patients->id }}">{{ $patients->person->Name }}</option>
 
-							@endforeach --}}
-
-                            <option value="1">Patient 1</option>
-                            <option value="2">Patient 2</option>
-                            <option value="3">Patient 3</option>
+							@endforeach
 
 						</select>
 						<div class="invalid-feedback">Patient invalid</div>
                     </div>
                     <div class="form-group">
                         <label>Care Center</label>
-						<select class="form-control" name="care_center_id" id="care_center_id" required>
+						<select class="form-control" name="CareCenterId" id="CareCenterId" required>
 							<option value="" selected>Select Care Center</option>
 
-							{{-- @foreach($care as $cares)
+							@foreach($care as $cares)
 
-							<option value="{{ $cares->id }}">{{ $cares->care_center_name }}</option>
+							<option value="{{ $cares->id }}">{{ $cares->CareCenterName }}</option>
 
-							@endforeach --}}
-
-                            <option value="1">Care Center 1</option>
-                            <option value="2">Care Center 2</option>
-                            <option value="3">Care Center 3</option>
+							@endforeach
 
 						</select>
 						<div class="invalid-feedback">Care center invalid</div>
                     </div>
                     <div class="form-group">
+                        <label>Physician</label>
+						<select class="form-control" name="PhisicianID" id="PhisicianID" required>
+							<option value="" selected>Select Physician</option>
+
+							@foreach($physician as $physicians)
+
+							<option value="{{ $physicians->id }}">{{ $physicians->person->Name }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Physician invalid</div>
+                    </div>
+                    <div class="form-group">
 						<label>Visit Date</label>
-						<input type="date" name="visit_date" id="visit_date" class="form-control" required>
+						<input type="date" name="VisitDate" id="VisitDate" class="form-control" required>
 						<div class="invalid-feedback">Visit date invalid</div>
 					</div>
                     <div class="form-group">
 						<label>Visit Time</label>
-						<input type="time" name="visit_time" id="visit_time" class="form-control" required>
+						<input type="time" name="VisitTime" id="VisitTime" class="form-control" required>
 						<div class="invalid-feedback">Visit time invalid</div>
 					</div>
 
@@ -150,6 +147,87 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Edit Data -->
+@foreach ($visits as $visit)
+<div class="modal fade" id="editData{{$visit['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Patient Visitation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<form action="{{$visit->id}}/updateVisit" method="POST" class="needs-validation" novalidate>
+
+					@csrf
+
+					<div class="form-group">
+                        <label>Patient</label>
+						<select class="form-control" name="MRN" id="MRN" required>
+							<option value="{{ $visit->patient->id }}" selected>{{ !empty($visit->patient) ? $visit->patient->person['Name']:'' }}</option>
+
+							@foreach($patient as $patients)
+
+							<option value="{{ $patients->id }}">{{ $patients->person->Name }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Patient invalid</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Care Center</label>
+						<select class="form-control" name="CareCenterId" id="CareCenterId" required>
+							<option value="{{ $visit->careCenter->id }}" selected>{{ !empty($visit->careCenter) ? $visit->careCenter['CareCenterName']:'' }}</option>
+
+							@foreach($care as $cares)
+
+							<option value="{{ $cares->id }}">{{ $cares->CareCenterName }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Care center invalid</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Physician</label>
+						<select class="form-control" name="PhisicianID" id="PhisicianID" required>
+							<option value="{{ $visit->physician->id }}" selected>{{ !empty($visit->physician) ? $visit->physician->person['Name']:'' }}</option>
+
+							@foreach($physician as $physicians)
+
+							<option value="{{ $physicians->id }}">{{ $physicians->person->Name }}</option>
+
+							@endforeach
+
+						</select>
+						<div class="invalid-feedback">Physician invalid</div>
+                    </div>
+                    <div class="form-group">
+						<label>Visit Date</label>
+						<input type="date" name="VisitDate" id="VisitDate" value="{{ $visit->VisitDate }}" class="form-control" required>
+						<div class="invalid-feedback">Visit date invalid</div>
+					</div>
+                    <div class="form-group">
+						<label>Visit Time</label>
+						<input type="time" name="VisitTime" id="VisitTime" value="{{ $visit->VisitTime }}" class="form-control" required>
+						<div class="invalid-feedback">Visit time invalid</div>
+					</div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 
 @endsection

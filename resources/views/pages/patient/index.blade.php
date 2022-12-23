@@ -23,12 +23,12 @@
                     <table id="datatable" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th width="20">No</th>
                                 <th>Name</th>
                                 <th>MRN</th>
                                 <th>Address</th>
                                 <th>Phone</th>
-                                <th>Action</th>
+                                <th width="210">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +49,7 @@
                                 <td>
                                     {{@$patient->person->Phone}}
                                 </td>
-                                <td>
+                                <td align="center">
                                     <a href="{{route('employee.show', $patient->id)}}" class="btn btn-sm btn-primary">Detail</a>
                                     <a href="{{route('employee.edit', $patient->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                     <form action="{{route('employee.destroy', $patient->id)}}" method="POST" class="d-inline">
